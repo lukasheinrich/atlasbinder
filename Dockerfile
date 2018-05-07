@@ -1,6 +1,7 @@
 FROM atlas/analysisbase:21.2.27
 
-RUN source ~/release_setup.sh && pip install jupyter --user
+RUN source ~/release_setup.sh && pip install jupyter metakernel zmq --user
+RUN source /home/atlas/release_setup.sh && cp -r $ROOTSYS/etc/notebook/kernels/root ~/.local/share/jupyter/kernels
 RUN echo 'export PATH=$PATH:$HOME/.local/bin' >> /home/atlas/setup.sh
 
 USER root
