@@ -8,6 +8,11 @@ RUN ln -s /usr/lib64/python2.6/lib-dynload/_sqlite3.so /usr/AnalysisBaseExternal
 ADD entrypoint.sh /entrypoint.sh
 RUN chown atlas /entrypoint.sh
 RUN chmod +x /entrypoint.sh
+
+RUN usermod -u 1000 atlas
+RUN find /home -user 500 -type f -exec chown -h atlas '{}' \;
+
+
 USER atlas
 
 ENTRYPOINT ["/entrypoint.sh"]
